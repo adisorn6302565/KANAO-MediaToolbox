@@ -1,0 +1,47 @@
+{
+  "name": "media-toolbox",
+  "private": true,
+  "version": "1.1.1",
+  "type": "module",
+  "description": "มีเดียทูลบ็อกซ์ — โปรแกรมจัดการสื่อภาษาไทย",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "tauri": "tauri",
+    "app:dev": "tauri dev",
+    "app:build": "tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-dialog": "^2.7.3",
+    "@tauri-apps/plugin-opener": "^2.5.5",
+    "jsbarcode": "^3.12.3",
+    "lucide-react": "^1.46.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6",
+    "recharts": "^2.15.4",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-sans-thai": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/prompt": "^5.3.0",
+    "@fontsource/sarabun": "^5.3.0",
+    "@tauri-apps/cli": "^2.11.4",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.3",
+    "vitest": "^3.2.7"
+  }
+}

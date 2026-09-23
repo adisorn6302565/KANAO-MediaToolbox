@@ -1,0 +1,66 @@
+[package]
+name = "media-toolbox"
+version = "1.1.1"
+description = "มีเดียทูลบ็อกซ์ — โปรแกรมจัดการสื่อภาษาไทย"
+authors = ["MediaToolbox"]
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+name = "media_toolbox_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "protocol-asset", "image-png"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["process", "io-util", "sync", "time", "rt-multi-thread", "macros"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+sysinfo = "0.33"
+thiserror = "2"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4"] }
+dirs = "5"
+walkdir = "2"
+regex = "1"
+sha2 = "0.10"
+sha1 = "0.10"
+md-5 = "0.10"
+hex = "0.4"
+aes-gcm = "0.10"
+pbkdf2 = { version = "0.12", features = ["simple"] }
+hmac = "0.12"
+rand = "0.8"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+lopdf = "0.45"
+tiny_http = "0.12"
+mime_guess = "2"
+local-ip-address = "0.6"
+urlencoding = "2"
+log = "0.4"
+once_cell = "1"
+trash = "5"
+base64 = "0.22"
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+sevenz-rust2 = "0.22"
+cpal = "0.18"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Graphics_Gdi", "Win32_UI_WindowsAndMessaging", "Win32_UI_Shell"] }
+winreg = "0.55"
+
+[profile.release]
+# ลดขนาดไฟล์ .exe ให้เล็กที่สุด
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

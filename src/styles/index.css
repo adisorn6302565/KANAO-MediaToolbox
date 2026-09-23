@@ -1,0 +1,229 @@
+@import "@fontsource/ibm-plex-sans-thai/400.css";
+@import "@fontsource/ibm-plex-sans-thai/500.css";
+@import "@fontsource/ibm-plex-sans-thai/600.css";
+@import "@fontsource/prompt/500.css";
+@import "@fontsource/prompt/600.css";
+@import "@fontsource/sarabun/400.css";
+@import "@fontsource/jetbrains-mono/400.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== ธีม (ค่าสีเป็น r g b เพื่อใช้ร่วมกับ opacity ของ Tailwind) ===== */
+:root,
+[data-theme="dark"] {
+  --bg: 7 7 18;
+  --bg2: 10 18 48;
+  --surface: 255 255 255;
+  --surface-a: 0.05;
+  --border-a: 0.1;
+  --fg: 236 236 250;
+  --muted: 150 150 180;
+  --accent: 168 85 247;
+  --accent2: 34 211 238;
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: 244 245 252;
+  --bg2: 226 232 255;
+  --surface: 255 255 255;
+  --surface-a: 0.75;
+  --border-a: 0.14;
+  --fg: 20 20 40;
+  --muted: 95 95 125;
+  --accent: 124 58 237;
+  --accent2: 8 145 178;
+  color-scheme: light;
+}
+[data-theme="cyberpunk"] {
+  --bg: 12 4 20;
+  --bg2: 40 6 50;
+  --surface: 255 255 255;
+  --surface-a: 0.05;
+  --border-a: 0.12;
+  --fg: 250 240 255;
+  --muted: 190 150 200;
+  --accent: 255 43 214;
+  --accent2: 250 204 21;
+  color-scheme: dark;
+}
+[data-theme="ocean"] {
+  --bg: 3 14 26;
+  --bg2: 4 47 73;
+  --surface: 255 255 255;
+  --surface-a: 0.05;
+  --border-a: 0.1;
+  --fg: 225 245 255;
+  --muted: 130 170 195;
+  --accent: 14 165 233;
+  --accent2: 45 212 191;
+  color-scheme: dark;
+}
+[data-theme="sunset"] {
+  --bg: 22 8 10;
+  --bg2: 60 20 25;
+  --surface: 255 255 255;
+  --surface-a: 0.05;
+  --border-a: 0.1;
+  --fg: 255 240 232;
+  --muted: 200 160 150;
+  --accent: 249 115 22;
+  --accent2: 236 72 153;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  @apply font-sans text-fg antialiased;
+  background: radial-gradient(1200px 700px at 85% -10%, rgb(var(--accent) / 0.16), transparent 60%),
+    linear-gradient(160deg, rgb(var(--bg)) 0%, rgb(var(--bg2)) 100%);
+  background-attachment: fixed;
+  /* ตัดคำภาษาไทยให้ถูกต้อง */
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-break: auto;
+  user-select: none;
+}
+input,
+textarea,
+select,
+[contenteditable],
+.selectable {
+  user-select: text;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--accent) / 0.35);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  .glass {
+    background: rgb(var(--surface) / var(--surface-a));
+    border: 1px solid rgb(var(--fg) / var(--border-a));
+    backdrop-filter: blur(16px) saturate(140%);
+    @apply rounded-2xl;
+  }
+  /* โหมดประหยัดเครื่อง: พื้นทึบแทนกระจกฝ้า */
+  :root[data-lite] .glass {
+    backdrop-filter: none;
+    background: rgb(var(--surface) / calc(var(--surface-a) + 0.04));
+  }
+  :root[data-lite] .animate-float {
+    animation: none;
+  }
+  .card {
+    @apply glass p-4;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium transition
+      disabled:cursor-not-allowed disabled:opacity-40 active:scale-[.98] whitespace-nowrap;
+    background: rgb(var(--fg) / 0.07);
+    border: 1px solid rgb(var(--fg) / 0.1);
+  }
+  .btn:hover:not(:disabled) {
+    background: rgb(var(--fg) / 0.13);
+  }
+  .btn-primary {
+    @apply btn text-white border-0;
+    background: linear-gradient(135deg, rgb(var(--accent)), rgb(var(--accent2)));
+    box-shadow: 0 4px 22px rgb(var(--accent) / 0.35);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgb(var(--accent)), rgb(var(--accent2)));
+    filter: brightness(1.12);
+  }
+  .btn-danger {
+    @apply btn text-red-300;
+    border-color: rgb(239 68 68 / 0.35);
+  }
+  .btn-sm {
+    @apply px-2.5 py-1 text-xs rounded-lg;
+  }
+  .input {
+    @apply w-full rounded-xl px-3 py-2 text-sm outline-none transition placeholder:text-muted/70;
+    background: rgb(var(--fg) / 0.06);
+    border: 1px solid rgb(var(--fg) / 0.12);
+  }
+  .input:focus {
+    border-color: rgb(var(--accent));
+    box-shadow: 0 0 0 3px rgb(var(--accent) / 0.2);
+  }
+  select.input option {
+    background: rgb(var(--bg));
+    color: rgb(var(--fg));
+  }
+  .label {
+    @apply mb-1 block text-xs font-medium text-muted;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs;
+    background: rgb(var(--accent) / 0.16);
+    color: rgb(var(--fg));
+  }
+  .tab {
+    @apply rounded-lg px-3 py-1.5 text-sm text-muted transition;
+  }
+  .tab-active {
+    @apply tab text-fg;
+    background: rgb(var(--accent) / 0.22);
+    box-shadow: inset 0 0 0 1px rgb(var(--accent) / 0.5);
+  }
+  .gradient-text {
+    background: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--accent2)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .progress {
+    @apply h-2 w-full overflow-hidden rounded-full;
+    background: rgb(var(--fg) / 0.08);
+  }
+  .progress > div {
+    @apply h-full rounded-full transition-all duration-300;
+    background: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--accent2)));
+    box-shadow: 0 0 12px rgb(var(--accent2) / 0.6);
+  }
+  .divider {
+    border-top: 1px solid rgb(var(--fg) / 0.08);
+  }
+}
+
+input[type="range"] {
+  accent-color: rgb(var(--accent));
+}
+input[type="checkbox"] {
+  accent-color: rgb(var(--accent));
+  width: 16px;
+  height: 16px;
+}
+
+/* ตัวอย่าง Markdown */
+.md-preview h1 { font-size: 1.6rem; font-weight: 700; margin: 0.6em 0 0.3em; }
+.md-preview h2 { font-size: 1.3rem; font-weight: 700; margin: 0.6em 0 0.3em; }
+.md-preview h3 { font-size: 1.1rem; font-weight: 600; margin: 0.5em 0 0.2em; }
+.md-preview p, .md-preview ul, .md-preview ol, .md-preview table, .md-preview pre, .md-preview blockquote { margin: 0.5em 0; }
+.md-preview ul { list-style: disc; padding-left: 1.5em; }
+.md-preview ol { list-style: decimal; padding-left: 1.5em; }
+.md-preview code { background: rgb(var(--fg) / 0.1); padding: 0 0.3em; border-radius: 4px; font-family: "JetBrains Mono", monospace; }
+.md-preview pre { background: rgb(0 0 0 / 0.3); padding: 0.8em; border-radius: 8px; overflow: auto; }
+.md-preview pre code { background: none; padding: 0; }
+.md-preview blockquote { border-left: 3px solid rgb(var(--accent)); padding-left: 0.8em; color: rgb(var(--muted)); }
+.md-preview a { color: rgb(var(--accent2)); text-decoration: underline; }
+.md-preview th, .md-preview td { border: 1px solid rgb(var(--fg) / 0.15); padding: 0.25em 0.6em; }
+.md-preview hr { border-color: rgb(var(--fg) / 0.15); margin: 1em 0; }
+.md-preview img { max-width: 100%; border-radius: 8px; }
