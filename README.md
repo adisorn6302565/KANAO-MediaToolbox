@@ -1,73 +1,213 @@
-# 🇹🇭 มีเดียทูลบ็อกซ์ (MediaToolbox)
+# MediaToolbox (มีเดียทูลบ็อกซ์)
 
-โปรแกรมจัดการสื่อครบวงจรสำหรับคนไทยบน Windows 10/11 — โหลดคลิป แปลงไฟล์ บีบอัด ตัดต่อ ดูคลิป และเครื่องมืออีก 30+ อย่าง ในโปรแกรมเดียว
+An all-in-one media toolkit for Windows 10/11, built for Thai users. It can download videos, convert, compress, edit and play media, and it has 30+ small utilities, all in one offline desktop app.
 
-- ภาษาไทยทั้งโปรแกรม รองรับชื่อไฟล์และพาธภาษาไทย แสดงปี พ.ศ. ได้
-- ใช้คนเดียว ไม่ต้องล็อกอิน ทำงานออฟไลน์ได้ (ยกเว้นตอนโหลดคลิปหรืออัปโหลดคลาวด์)
-- ไม่ใช้ AI ไม่ใช้ API แบบเสียเงิน
-- ติดตั้ง yt-dlp และ ffmpeg มาในตัว
+> 🇹🇭 ภาษาไทย: [README.th.md](README.th.md)
 
-## หน้าทั้งหมด (21 หน้า)
+- Built with **Rust + Tauri 2 + React + TypeScript + TailwindCSS**
+- Thai UI throughout, with support for Thai file names and paths and Buddhist-era (พ.ศ.) dates
+- Single user, no login, and it works offline (except for downloading and cloud upload)
+- No AI and no paid APIs
+- Ships with **yt-dlp** and **ffmpeg**, so there's nothing else to install
+- Runs on x64 and ARM64
 
-| หน้า | ทำอะไรได้ |
+## Features (21 pages)
+
+| Page | What it does |
 |---|---|
-| 🏠 หน้าแรก | สถิติ งานที่กำลังทำ ไฟล์ล่าสุด กราฟระบบ ทางลัด (ลากจัด widget ได้) |
-| 📥 โหลดคลิป | YouTube / Facebook (รวมกลุ่ม) / IG / TikTok ไม่ติดลายน้ำ / X / +1000 เว็บ, คิว หยุด-ทำต่อ, คุกกี้, proxy, ตั้งเวลา |
-| 🔄 แปลงไฟล์ | วิดีโอ เสียง รูป, H.264/H.265/VP9/AV1/ProRes, NVENC/QSV/AMF, ตัด ครอป หมุน ความเร็ว ลายน้ำ ฝังซับ, ส่งออก ZIP |
-| 🗜️ บีบอัดไฟล์ | PDF (ลด/แยก/รวม/หมุน/ใส่รหัส/ลายน้ำ), รูปเป็นกลุ่ม, วิดีโอ two-pass, เปลี่ยนชื่อกลุ่ม |
-| ✂️ ตัดต่อมีเดีย | ไทม์ไลน์ ทรานซิชัน เพลง ข้อความ LUT Ken Burns Chroma key / แต่งเสียง EQ / แต่งรูปแบบเลเยอร์ |
-| ▶️ ดูคลิป | เพลย์ลิสต์ ซับ SRT/VTT/ASS เล่นต่อจากเดิม bookmark วน A-B จับภาพ PiP |
-| ⚙️ อัตโนมัติ | เวิร์กโฟลว์ เฝ้าโฟลเดอร์ กฎ ถ้า-แล้ว ตั้งเวลา จัดเรียงไฟล์ |
-| ☁️ ซิงก์คลาวด์ | อัปโหลดผ่าน rclone, แชร์ LAN + QR, โอนไฟล์ P2P, FTP server |
-| 📊 วิเคราะห์ | สถิติ heatmap treemap ไฟล์ซ้ำ ไฟล์ใหญ่ โฟลเดอร์ว่าง ส่งออก CSV/JSON |
-| 🗂️ คลังไฟล์ | แกลเลอรี กรอง เรียง แท็ก รายการโปรด สไลด์โชว์ |
-| 🧰 เครื่องมือ | 30 อย่าง: อัดจอ GIF มีม QR บาร์โค้ด สี ฟอนต์ EXIF hash รหัสผ่าน ZIP ซับ BPM เมโทรนอม JSON/YAML Regex ฯลฯ |
-| 📡 สตรีมมิ่ง | Media server + RSS พอดแคสต์, อัดไลฟ์, อัดวิทยุออนไลน์ |
-| 🔒 ความปลอดภัย | เข้ารหัส AES-256, ลบถาวร, ลบ EXIF/GPS, ลายน้ำ, PIN, ล็อกอัตโนมัติ, ปุ่มฉุกเฉิน |
-| 📱 โซเชียล | รีล/สตอรี่/รูปโปรไฟล์/ภาพปก, นับแฮชแท็ก, ดึงแคปชัน, บันทึกตารางโพสต์ |
-| 🧑‍💻 นักพัฒนา | ทดสอบ API, API key, webhook, CLI, ปลั๊กอิน JS, log, cron |
-| 🎉 สนุก | เครื่องเล่นเพลง + visualizer + เนื้อเพลง .lrc, สั่งด้วยเสียง, Pomodoro, แมวเดินเล่น, Konami code, ความสำเร็จ |
-| ❓ ช่วยเหลือ | ทัวร์แนะนำ บทเรียน FAQ คีย์ลัด (กด `?`) บันทึกการเปลี่ยนแปลง |
-| 🖥️ ระบบ | CPU/RAM/GPU/ดิสก์/เครือข่าย, คิวงาน, log, สำรอง-กู้คืน |
-| 🎨 ปรับแต่ง | widget, โปรไฟล์, เสียงแจ้งเตือน, คีย์ลัด, ภาษา, สร้างธีมเอง |
-| 🕘 ประวัติ | กรอง ค้นหา เปิดไฟล์/โฟลเดอร์ ส่งออก CSV/JSON |
-| ⚙️ ตั้งค่า | โฟลเดอร์ คุกกี้ งานพร้อมกัน พาธ ffmpeg/yt-dlp proxy ธีม ภาษา ฯลฯ |
+| 🏠 Dashboard | Stats, live jobs, recent files, system charts, shortcuts, draggable widgets |
+| 📥 Downloader | YouTube, Facebook (incl. groups), Instagram, TikTok (no watermark), X and 1000+ other sites. Queue with pause/resume, cookies, proxy, scheduling |
+| 🔄 Converter | Video, audio and images. H.264/H.265/VP9/AV1/ProRes, NVENC/QSV/AMF. Trim, crop, rotate, speed, watermark, burn-in subtitles, ZIP export |
+| 🗜️ Compressor | PDF (compress/split/merge/rotate/password/watermark), batch images, two-pass video, batch rename |
+| ✂️ Editor | Video timeline with transitions, music, text, LUT, Ken Burns and chroma key. Audio EQ. Layered image editing |
+| ▶️ Player | Playlists, SRT/VTT/ASS subtitles, resume, bookmarks, A-B loop, screenshots, PiP |
+| ⚙️ Automation | Multi-step workflows, folder watchers, if-then rules, schedules, auto-sort |
+| ☁️ Cloud Sync | rclone upload, LAN share with QR code, P2P transfer, built-in FTP server |
+| 📊 Analytics | Usage stats, heatmap, storage treemap, duplicate/large files, empty folders, CSV/JSON export |
+| 🗂️ Library | Gallery, filters, sorting, tags, favorites, slideshow |
+| 🧰 Utilities | 30 tools: screen recorder, GIF, meme, QR/barcode, color, fonts, EXIF, hash, passwords, archives, subtitles, BPM, metronome, JSON/YAML, regex… |
+| 📡 Streaming | Local media server, DLNA, podcast RSS feed, live stream and web radio recording |
+| 🔒 Security | AES-256 encryption, secure delete, EXIF/GPS removal, watermark, PIN lock, auto-lock, panic button |
+| 📱 Social | Reels, stories, profile pictures, thumbnails, hashtag counter, caption extraction, post planner |
+| 🧑‍💻 Developer | API tester, API keys, webhooks, CLI, JS plugins, logs, cron |
+| 🎉 Fun | Music player with visualizer and .lrc lyrics, voice commands, Pomodoro timer, a walking cat, Konami code, achievements |
+| ❓ Help | Onboarding tour, tutorials, FAQ, shortcuts (`?`), changelog |
+| 🖥️ System | CPU/RAM/GPU/disk/network, job queue, logs, backup and restore |
+| 🎨 Personalize | Widgets, profile, notification sounds, hotkeys, language, custom themes |
+| 🕘 History | Filter, search, open file or folder, CSV/JSON export |
+| ⚙️ Settings | Output folder, cookies, concurrency, ffmpeg/yt-dlp paths, proxy, theme, language… |
 
-## สถาปัตยกรรม
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph FE["Frontend: React + TypeScript (WebView2)"]
+        Pages["pages/*<br/>21 pages + tools"]
+        Store["store/app.ts<br/>(zustand)"]
+        Lib["lib/api.ts · lib/ffmpeg.ts<br/>lib/subtitle.ts · lib/automation.ts"]
+    end
+
+    subgraph BE["Backend: Rust + Tauri 2 (src-tauri)"]
+        Cmd["commands/*<br/>jobs · media · files · settings · system · dev"]
+        Jobs["core/jobs.rs<br/>job queue + scheduler"]
+        Bin["core/binaries.rs<br/>locate yt-dlp / ffmpeg"]
+        Core["core/crypto · pdf · cleaner<br/>server · ftp · dlna · stream · recorder"]
+        DB[("SQLite<br/>core/db.rs")]
+        Cfg[["settings.json<br/>core/settings.rs"]]
+    end
+
+    subgraph EXT["External processes"]
+        YT["yt-dlp.exe"]
+        FF["ffmpeg.exe / ffprobe.exe"]
+        RC["rclone / Ghostscript (optional)"]
+    end
+
+    Pages --> Store --> Lib
+    Lib -- "invoke()" --> Cmd
+    Cmd --> Jobs & Core & DB & Cfg
+    Jobs --> Bin --> YT & FF
+    Core --> RC
+    Jobs -- "emit job-update / job-removed / history-changed" --> Lib
+```
+
+## Data flow: a download or conversion job
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor U as User
+    participant UI as React page
+    participant API as lib/api.ts
+    participant CMD as commands/jobs.rs
+    participant JM as JobManager (core/jobs.rs)
+    participant P as yt-dlp / ffmpeg
+    participant DB as SQLite
+
+    U->>UI: paste URL / drop file, choose options
+    UI->>API: build args (lib/ffmpeg.ts)
+    API->>CMD: invoke("add_job", NewJob)
+    CMD->>JM: add() → status = queued
+    JM-->>UI: emit "job-update"
+    loop scheduler (respects concurrency limit and start_at)
+        JM->>JM: next_ready() → status = running
+        JM->>P: spawn process
+        P-->>JM: stdout / stderr progress
+        JM-->>UI: emit "job-update" (progress, speed, ETA)
+    end
+    P-->>JM: exit code
+    JM->>DB: insert history + logs
+    JM-->>UI: emit "job-update" (done / failed) + "history-changed"
+    JM-->>U: Windows notification (optional)
+```
+
+## Job lifecycle
+
+```mermaid
+flowchart TD
+    A([New job]) --> B{start_at set?}
+    B -- "yes, in the future" --> W[queued: waiting for time]
+    B -- no --> Q[queued]
+    W --> Q
+    Q --> S{running slots < limit?}
+    S -- no --> Q
+    S -- yes --> R[running]
+    Q -- pause --> PA[paused]
+    R -- pause --> PA
+    PA -- resume --> Q
+    R -- cancel --> C[cancelled]
+    Q -- cancel --> C
+    R --> X{process exit code}
+    X -- "0" --> D[done]
+    X -- "≠ 0" --> F[failed]
+    F -- retry --> Q
+    C -- retry --> Q
+    D --> H[(write history + log)]
+    F --> H
+    C --> H
+```
+
+## Data model
+
+MediaToolbox stores its data in SQLite at `%APPDATA%\th.mediatoolbox.app`. Active jobs live only in memory. When a job finishes, it's written to `history` and `logs`. The tables aren't linked by foreign keys. The dashed lines below show how rows relate logically.
+
+```mermaid
+erDiagram
+    JOB ||..o| HISTORY : "on finish writes"
+    JOB ||..o{ LOGS : "emits"
+    KV }o..|| SETTINGS : "backed up with"
+
+    JOB {
+        string id PK "in-memory only"
+        string kind "download | convert | compress | record ..."
+        string title
+        string status "queued | running | paused | done | failed | cancelled"
+        float progress
+        string speed
+        string eta
+        string input
+        string output
+        int size_before
+        int size_after
+        string start_at "scheduled start (RFC3339)"
+        int priority
+        json spec "Download{url,args} | Ffmpeg{passes,duration}"
+    }
+    HISTORY {
+        text id PK
+        text kind
+        text title
+        text input
+        text output
+        text status
+        integer size_before
+        integer size_after
+        text message
+        text created_at "indexed"
+    }
+    LOGS {
+        integer id PK "autoincrement"
+        text level "info | warn | error"
+        text source
+        text message
+        text created_at
+    }
+    KV {
+        text key PK
+        text value "tags, favorites, resume positions, bookmarks ..."
+    }
+    SETTINGS {
+        string file "settings.json"
+        string output_dir
+        int concurrency
+        string ffmpeg_path
+        string ytdlp_path
+        string proxy
+        string theme
+    }
+```
+
+## Project structure
 
 ```
-React + TypeScript + Tailwind (หน้าจอ)
-        │  invoke() / event "job://progress"
-        ▼
-Rust + Tauri 2 (src-tauri)
-  ├─ core/jobs.rs      คิวงาน (จำกัดจำนวนพร้อมกัน, หยุด/ทำต่อ/ยกเลิก)
-  ├─ core/binaries.rs  หา yt-dlp / ffmpeg (ตั้งเอง → ในตัว → PATH)
-  ├─ core/db.rs        SQLite (ประวัติ, แท็ก, ค่าต่าง ๆ)
-  ├─ core/crypto.rs    AES-256-GCM + PBKDF2-SHA256
-  ├─ core/pdf.rs       จัดการ PDF (lopdf)
-  ├─ core/server.rs    Media server / แชร์ LAN / RSS
-  └─ core/ftp.rs       FTP server
+src/                 React frontend
+  components/        Layout, shared UI (buttons, cards, sliders, drag-sort …)
+  hooks/             data hooks
+  lib/               api (Rust bridge), ffmpeg (command builder), subtitle, format, automation, theme
+  pages/             21 pages + tools/
+  store/             zustand store
+src-tauri/           Rust backend
+  src/commands/      commands exposed to the frontend
+  src/core/          jobs, db, crypto, pdf, server, ftp, dlna, stream, recorder, cleaner
+  bin/               yt-dlp.exe, ffmpeg.exe, ffprobe.exe (fetched before build, not in git)
+tests/               vitest unit tests + real ffmpeg integration tests
+scripts/             fetch-binaries.ps1, build.ps1
 ```
 
-```
-src/
-  components/   Layout, ui (ปุ่ม การ์ด แถบเลื่อน ลากจัดลำดับ ...)
-  lib/          api (เรียก Rust), ffmpeg (สร้างคำสั่ง), subtitle, format, automation
-  pages/        21 หน้า + tools/ (เครื่องมือย่อย)
-src-tauri/
-  src/commands/ คำสั่งที่หน้าจอเรียกใช้
-  src/core/     ระบบหลัก
-  bin/          yt-dlp.exe ffmpeg.exe ffprobe.exe (ใส่ก่อน build)
-tests/          ทดสอบ (vitest) + ทดสอบ ffmpeg จริง
-scripts/        fetch-binaries.ps1, build.ps1
-```
+Downloaded and converted files go to `Documents\MediaToolbox` by default.
 
-ข้อมูลผู้ใช้ (ตั้งค่า ฐานข้อมูล log) เก็บที่ `%APPDATA%\th.mediatoolbox.app`
-ไฟล์ที่โหลดหรือแปลงแล้ว บันทึกไว้ที่ `Documents\MediaToolbox` เป็นค่าเริ่มต้น
+## Development
 
-## พัฒนา
-
-ต้องมี: Node.js 20+, Rust (stable), Visual Studio Build Tools (C++), WebView2 (มีใน Windows 11 แล้ว)
+Requirements: Node.js 20+, Rust (stable), Visual Studio Build Tools (C++), and WebView2 (built into Windows 11).
 
 ```bash
 npm install
@@ -81,9 +221,9 @@ powershell -ExecutionPolicy Bypass -File scripts/fetch-binaries.ps1
 npm run app:dev
 ```
 
-`npm run dev` เปิดเฉพาะหน้าเว็บในเบราว์เซอร์ได้ (ใช้ข้อมูลจำลอง ไม่เรียก Rust)
+`npm run dev` runs only the web UI in a browser, using mock data and no Rust backend.
 
-### ทดสอบ
+### Tests
 
 ```bash
 npm run typecheck
@@ -97,31 +237,29 @@ npm test
 cd src-tauri && cargo test
 ```
 
-`npm test` จะรัน ffmpeg จริงกับไฟล์ตัวอย่างด้วย ถ้ามี ffmpeg ใน PATH (ถ้าไม่มีจะข้ามส่วนนั้น)
+If ffmpeg is on your `PATH`, `npm test` also runs real ffmpeg integration tests. Otherwise those tests are skipped.
 
-## Build ตัวติดตั้ง
+## Build the installer
 
 ```bash
 powershell -ExecutionPolicy Bypass -File scripts/build.ps1
 ```
 
-ได้ไฟล์ที่ `src-tauri/target/x86_64-pc-windows-msvc/release/bundle/` ทั้ง `nsis/*.exe` และ `msi/*.msi`
-สำหรับ ARM64 ใช้ `-Target aarch64-pc-windows-msvc` (ต้อง `rustup target add aarch64-pc-windows-msvc`)
+The installers are written to `src-tauri/target/x86_64-pc-windows-msvc/release/bundle/` as `nsis/*.exe` and `msi/*.msi`. For ARM64, pass `-Target aarch64-pc-windows-msvc` after running `rustup target add aarch64-pc-windows-msvc`.
 
-GitHub Actions (`.github/workflows/build.yml`) จะทดสอบและ build ทั้ง x64 และ ARM64 ให้อัตโนมัติ ถ้า push tag `v*` จะสร้าง Release แบบร่างให้
+GitHub Actions (`.github/workflows/build.yml`) tests and builds x64 and ARM64 on every push. Pushing a `v*` tag also creates a draft release.
 
-## ข้อจำกัดที่ควรรู้
+## Known limitations
 
-- **rclone** (ซิงก์คลาวด์) และ **Ghostscript** (บีบอัด PDF แบบลดคุณภาพรูป) ต้องติดตั้งเอง ถ้าไม่มี Ghostscript โปรแกรมจะใช้วิธีบีบอัดแบบไม่เสียคุณภาพในตัวแทน
-- DLNA / Chromecast: ยังไม่ค้นหาอุปกรณ์อัตโนมัติ ให้เปิด Media server แล้วเปิดลิงก์จากทีวีหรือมือถือ
-- สั่งงานด้วยเสียงใช้ Web Speech ของ Windows ซึ่งบางเครื่องอาจต้องต่อเน็ต
-- ตั้งเวลาโพสต์โซเชียลเป็นแค่การเตือน ไม่โพสต์ให้อัตโนมัติ
-- LINE Notify ปิดบริการไปแล้วในปี 2025 — webhook รองรับ Discord / Slack / URL ทั่วไป
-- แตกไฟล์ 7z / RAR ใช้ `tar` ที่มากับ Windows 10 1803 ขึ้นไป
-- ถ้ารวม ffmpeg ไว้ในตัว ตัวติดตั้งจะใหญ่กว่า 60 MB (ffmpeg เองประมาณ 100 MB ก่อนบีบอัด)
-- โหลดคลิปจาก Facebook / Instagram ที่ต้องล็อกอิน ต้องตั้งค่าคุกกี้ในหน้า ตั้งค่า และควรปิด Chrome / Edge ก่อนโหลด
+- **rclone** (cloud sync) and **Ghostscript** (lossy PDF compression) must be installed separately. Without Ghostscript, PDFs are compressed losslessly instead.
+- Voice commands use Windows Web Speech, which may need an internet connection.
+- The social post planner only sets reminders. It doesn't post anything.
+- LINE Notify shut down in 2025, so webhooks support Discord, Slack and generic URLs.
+- Extracting 7z/RAR archives needs the `tar` that ships with Windows 10 1803 or later.
+- Bundling ffmpeg makes the installer larger than 60 MB.
+- Facebook and Instagram content that needs a login requires cookies in Settings. Close Chrome/Edge before downloading.
 
-## สัญญาอนุญาต
+## License
 
-MIT — yt-dlp (Unlicense) และ ffmpeg (GPL/LGPL) เป็นลิขสิทธิ์ของผู้พัฒนาแต่ละโครงการ
-ใช้โหลดเฉพาะเนื้อหาที่คุณมีสิทธิ์ และปฏิบัติตามเงื่อนไขของแต่ละเว็บไซต์
+MIT. yt-dlp (Unlicense) and ffmpeg (GPL/LGPL) remain under their own licenses.
+Only download content you have the right to, and follow each site's terms of service.
