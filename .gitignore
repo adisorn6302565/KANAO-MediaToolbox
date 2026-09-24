@@ -4,3 +4,9 @@ src-tauri/target/
 src-tauri/bin/*.exe
 src-tauri/gen/schemas/
 *.log
+
+# local AI tooling
+.claude/
+claude.md
+CLAUDE.md
+.mcp.json
