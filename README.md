@@ -1,4 +1,6 @@
-# MediaToolbox (มีเดียทูลบ็อกซ์)
+# KANAO MediaToolbox (มีเดียทูลบ็อกซ์)
+
+[![Build](https://github.com/adisorn6302565/KANAO-MediaToolbox/actions/workflows/build.yml/badge.svg)](https://github.com/adisorn6302565/KANAO-MediaToolbox/actions/workflows/build.yml)
 
 An all-in-one media toolkit for Windows 10/11, built for Thai users. It can download videos, convert, compress, edit and play media, and it has 30+ small utilities, all in one offline desktop app.
 
@@ -10,6 +12,17 @@ An all-in-one media toolkit for Windows 10/11, built for Thai users. It can down
 - No AI and no paid APIs
 - Ships with **yt-dlp** and **ffmpeg**, so there's nothing else to install
 - Runs on x64 and ARM64
+
+## Install
+
+1. Download from the [**latest release**](../../releases/latest):
+   - `KANAO MediaToolbox_<version>_x64-setup.exe` for most PCs
+   - `..._arm64-setup.exe` for Windows on ARM (Snapdragon)
+   - `.msi` if you deploy with Group Policy / Intune
+2. Run the installer (per-user, no admin needed). If SmartScreen warns: **More info → Run anyway**.
+3. Open **KANAO MediaToolbox** from the Start menu. yt-dlp and ffmpeg are included.
+
+Uninstall from **Settings → Apps**.
 
 ## Features (21 pages)
 
@@ -247,7 +260,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build.ps1
 
 The installers are written to `src-tauri/target/x86_64-pc-windows-msvc/release/bundle/` as `nsis/*.exe` and `msi/*.msi`. For ARM64, pass `-Target aarch64-pc-windows-msvc` after running `rustup target add aarch64-pc-windows-msvc`.
 
-GitHub Actions (`.github/workflows/build.yml`) tests and builds x64 and ARM64 on every push. Pushing a `v*` tag also creates a draft release.
+GitHub Actions (`.github/workflows/build.yml`) tests and builds x64 and ARM64 on every push. Pushing a `v*` tag also publishes a release with the installers attached.
 
 ## Known limitations
 

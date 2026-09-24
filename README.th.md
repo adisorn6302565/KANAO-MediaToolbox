@@ -1,4 +1,6 @@
-# 🇹🇭 มีเดียทูลบ็อกซ์ (MediaToolbox)
+# 🇹🇭 KANAO MediaToolbox (มีเดียทูลบ็อกซ์)
+
+[![Build](https://github.com/adisorn6302565/KANAO-MediaToolbox/actions/workflows/build.yml/badge.svg)](https://github.com/adisorn6302565/KANAO-MediaToolbox/actions/workflows/build.yml)
 
 โปรแกรมจัดการสื่อครบวงจรสำหรับคนไทยบน Windows 10/11 — โหลดคลิป แปลงไฟล์ บีบอัด ตัดต่อ ดูคลิป และเครื่องมืออีก 30+ อย่าง ในโปรแกรมเดียว
 
@@ -6,6 +8,17 @@
 - ใช้คนเดียว ไม่ต้องล็อกอิน ทำงานออฟไลน์ได้ (ยกเว้นตอนโหลดคลิปหรืออัปโหลดคลาวด์)
 - ไม่ใช้ AI ไม่ใช้ API แบบเสียเงิน
 - ติดตั้ง yt-dlp และ ffmpeg มาในตัว
+
+## 📥 ติดตั้ง
+
+1. ดาวน์โหลดจาก [**Releases ล่าสุด**](../../releases/latest)
+   - `KANAO MediaToolbox_<เวอร์ชัน>_x64-setup.exe` สำหรับเครื่องทั่วไป
+   - `..._arm64-setup.exe` สำหรับ Windows on ARM (Snapdragon)
+   - `.msi` สำหรับติดตั้งผ่าน Group Policy / Intune
+2. รันตัวติดตั้ง (ติดตั้งเฉพาะผู้ใช้ ไม่ต้องใช้สิทธิ์ Admin) ถ้า SmartScreen เตือน: **More info → Run anyway**
+3. เปิด **KANAO MediaToolbox** จากเมนู Start ได้เลย มี yt-dlp และ ffmpeg ในตัว
+
+ถอนการติดตั้ง: **Settings → Apps**
 
 ## หน้าทั้งหมด (21 หน้า)
 
@@ -108,7 +121,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build.ps1
 ได้ไฟล์ที่ `src-tauri/target/x86_64-pc-windows-msvc/release/bundle/` ทั้ง `nsis/*.exe` และ `msi/*.msi`
 สำหรับ ARM64 ใช้ `-Target aarch64-pc-windows-msvc` (ต้อง `rustup target add aarch64-pc-windows-msvc`)
 
-GitHub Actions (`.github/workflows/build.yml`) จะทดสอบและ build ทั้ง x64 และ ARM64 ให้อัตโนมัติ ถ้า push tag `v*` จะสร้าง Release แบบร่างให้
+GitHub Actions (`.github/workflows/build.yml`) จะทดสอบและ build ทั้ง x64 และ ARM64 ให้อัตโนมัติ ถ้า push tag `v*` จะสร้าง Release พร้อมแนบตัวติดตั้งให้อัตโนมัติ
 
 ## ข้อจำกัดที่ควรรู้
 
